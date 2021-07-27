@@ -1,1 +1,5 @@
-/* você pode estilizar se quiser !!! */
+body {
+    background-color: rgb(0, 122, 122);
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 241);
+}

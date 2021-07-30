@@ -19,7 +19,7 @@ function titleKata(n) {
 function kata1() {
     titleKata(1)
     showResults(gotCitiesCSV.split(","))
-    return gotCitiesCSV
+    return gotCitiesCSV.split(",")
 }
 
 kata1();
@@ -63,10 +63,7 @@ kata5()
 
 function kata6() {
     titleKata(6)
-    let newArr = []
-    for (let i = lotrCitiesArray.length - 1; i >= 3; i--) {
-        newArr.push(lotrCitiesArray[i])
-    }
+    let newArr = lotrCitiesArray.slice(-5)
     showResults(newArr)
     return newArr
 }
@@ -75,8 +72,7 @@ kata6()
 
 function kata7() {
     titleKata(7)
-    let newArr = []
-    newArr.push(lotrCitiesArray[3], lotrCitiesArray[5])
+    let newArr = lotrCitiesArray.splice(2,3)
     showResults(newArr)
     return newArr
 }
@@ -85,7 +81,7 @@ kata7()
 
 function kata8() {
     titleKata(8)
-    removed = lotrCitiesArray.splice(2, 1)
+    removed = lotrCitiesArray.splice(lotrCitiesArray.indexOf("Rohan"), 1)
     showResults(lotrCitiesArray)
     return lotrCitiesArray
 }
@@ -94,7 +90,7 @@ kata8()
 
 function kata9() {
     titleKata(9)
-    removed = lotrCitiesArray.splice(5)
+    removed = lotrCitiesArray.splice(lotrCitiesArray.indexOf("Dead Marshes") + 1, lotrCitiesArray.length)
     showResults(lotrCitiesArray)
     return lotrCitiesArray
 }
@@ -103,7 +99,7 @@ kata9()
 
 function kata10() {
     titleKata(10)
-    lotrCitiesArray.splice(2, 0,"Rohan")
+    lotrCitiesArray.splice(lotrCitiesArray.indexOf("Gondor") + 1, 0, "Rohan")
     showResults(lotrCitiesArray)
     return lotrCitiesArray
 }
@@ -112,7 +108,7 @@ kata10()
 
 function kata11() {
     titleKata(11)
-    lotrCitiesArray.splice(5, 1,"Deadest Marshes")
+    lotrCitiesArray.splice(lotrCitiesArray.indexOf("Dead Marshes"), 1,"Deadest Marshes")
     showResults(lotrCitiesArray)
     return lotrCitiesArray
 }
@@ -139,7 +135,7 @@ kata13()
 
 function kata14() {
     titleKata(14)
-    removed = bestThing.slice(23, 38)
+    removed = bestThing.slice(22, 37)
     showResults(removed)
     return removed
 }
@@ -148,7 +144,7 @@ kata14()
 
 function kata15() {
     titleKata(15)
-    substr = bestThing.substring(bestThing.length, 69)
+    substr = bestThing.substring(bestThing.length - 12)
     showResults(substr)
     return substr
 }
@@ -157,7 +153,7 @@ kata15()
 
 function kata16() {
     titleKata(16)
-    substr = bestThing.substring(23, 38)
+    substr = bestThing.substring(22, 37)
     showResults(substr)
     return substr
 }
@@ -166,39 +162,39 @@ kata16()
 
 function kata17() {
     titleKata(17)
-    lotrCitiesArray.pop()
+    let rem = lotrCitiesArray.pop()
     showResults(lotrCitiesArray)
+    kata18(rem)
     return lotrCitiesArray
 }
 
 kata17()
 
-function kata18() {
+function kata18(elm) {
     titleKata(18)
-    lotrCitiesArray.push("Deadest Marshes")
+    lotrCitiesArray.push(elm)
     showResults(lotrCitiesArray)
     return lotrCitiesArray
 }
 
-kata18()
-
 function kata19() {
     titleKata(19)
-    lotrCitiesArray.shift()
+    rem = lotrCitiesArray.shift()
     showResults(lotrCitiesArray)
+    kata20(rem)
     return lotrCitiesArray
 }
 
 kata19()
 
-function kata20() {
+function kata20(elm) {
     titleKata(20)
-    lotrCitiesArray.unshift("Mordor")
+    lotrCitiesArray.unshift(elm)
     showResults(lotrCitiesArray)
     return lotrCitiesArray
 }
 
-kata20()
+
 
 function titleBonusKata(n) {
     h2 = document.createElement("h2")
@@ -208,16 +204,18 @@ function titleBonusKata(n) {
 
 function kataBonus1() {
     titleBonusKata(1)
-    showResults(bestThing.indexOf("only"))
-    return bestThing.indexOf("only")
+    let arr = bestThing.split(" ")
+    showResults(arr.indexOf("only"))
+    return arr.indexOf("only")
 }
 
 kataBonus1()
 
 function kataBonus2() {
     titleBonusKata(2)
-    showResults(bestThing.indexOf("bit"))
-    return bestThing.indexOf("bit")
+    let arr = bestThing.split(" ")
+    showResults(arr.indexOf("bit"))
+    return arr.indexOf("bit")
 }
 
 kataBonus2()
@@ -231,11 +229,12 @@ function kataBonus3() {
         for(let j = 0; j < column.length; j++){
             if(column[j] === column[j+1]){
                 newArr.push(arr[i])
+                break
             }
         }
     }
-    showResults(newArr.filter(function(elm, i, self) { return i === self.indexOf(elm)}))
-    return newArr.filter(function(elm, i, self) { return i === self.indexOf(elm)})
+    showResults(newArr)
+    return newArr
 }
 
 kataBonus3()
